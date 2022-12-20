@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -8,17 +10,22 @@ public class UnityAdsController : MonoBehaviour, IUnityAdsInitializationListener
     public string myGameIdAndroid = "5082689";
     public string interstitialAdIdAndroid = "Interstitial_Android";
     public string rewardAdIdAndroid = "Rewarded_Android";
+    public string bannerAdIdAndroid = "Banner_Android";
 
     public string myGameIdIOS = "5082688";
     public string interstitialAdIdIOS = "Interstitial_iOS";
     public string rewardAdIdIOS = "Rewarded_iOS";
+    public string bannerAdIdIOS = "Banner_iOS";
 
     public string interstitialAdUnitId;
     public string rewardAdUnitId;
+    public string bannerAdUnitId;
 
     void Start()
     {
         InitializeAds();
+
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
     }
 
     private void InitializeAds()
@@ -27,10 +34,12 @@ public class UnityAdsController : MonoBehaviour, IUnityAdsInitializationListener
 	    Advertisement.Initialize(myGameIdIOS, testMode, this);
 	    interstitialAdUnitId = interstitialAdIdIOS;
         rewardAdUnitId = rewardAdIdIOS;
+        bannerAdUnitId = bannerAdIdIOS;
 #elif UNITY_ANDROID
         Advertisement.Initialize(myGameIdAndroid, testMode, this);
         interstitialAdUnitId = interstitialAdIdAndroid;
         rewardAdUnitId = rewardAdIdAndroid;
+        bannerAdUnitId = bannerAdIdAndroid;
 #endif
     }
     public void ShowInterstitialAd()
@@ -56,6 +65,33 @@ public class UnityAdsController : MonoBehaviour, IUnityAdsInitializationListener
         {
             Debug.LogWarning($"Unity Ads {rewardAdUnitId} haven't initialized yet");
         }
+    }
+    public void ShowBanner()
+    {
+        if (Advertisement.isInitialized)
+        {
+            BannerLoadOptions loadOptions = new BannerLoadOptions()
+            {
+                errorCallback = OnBannerLoadError,
+                loadCallback = OnBannerLoaded
+            };
+
+            BannerOptions options = new BannerOptions()
+            {
+                clickCallback = OnBannerClicked,
+                hideCallback = OnBannerHIdden,
+                showCallback = OnBannerShown
+            };
+
+            if(!Advertisement.Banner.isLoaded)
+                Advertisement.Banner.Load(bannerAdUnitId, loadOptions);
+
+            Advertisement.Banner.Show(bannerAdUnitId, options);
+        }
+    }
+    public void HideBanner()
+    {
+        Advertisement.Banner.Hide();
     }
 
     public void OnInitializationComplete()
@@ -96,5 +132,30 @@ public class UnityAdsController : MonoBehaviour, IUnityAdsInitializationListener
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
         Debug.Log($"Unity Ads {placementId} ad showing is completed - {showCompletionState}");
+    }
+
+    private void OnBannerLoaded()
+    {
+        Debug.Log("Unity Ads Banner loaded successfully");
+    }
+
+    private void OnBannerLoadError(string message)
+    {
+        Debug.LogError($"Unity Ads Banner failed to load - {message}");
+    }
+
+    private void OnBannerShown()
+    {
+        Debug.Log("Unity Ads Banner shown successfully");
+    }
+
+    private void OnBannerHIdden()
+    {
+        Debug.Log("Unity Ads Banner hidden successfuly");
+    }
+
+    private void OnBannerClicked()
+    {
+        Debug.Log("Unity Ads Banner was clicked successfully");
     }
 }

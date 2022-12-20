@@ -28,8 +28,28 @@ public class AdsController : MonoBehaviour
                 break;
         }
     }
+    public void ShowBanner()
+    {
+        switch (_adsProvider)
+        {
+            case AdsProvider.UnityAds:
+                _unityAds.ShowBanner();
+                break;
+        }
+    }
+    public void HideBanner()
+    {
+        switch (_adsProvider)
+        {
+            case AdsProvider.UnityAds:
+                _unityAds.HideBanner();
+                break;
+        }
+    }
     public void ChooseAdsProvider(int provider)
     {
+        HideBanner();
+
         _adsProvider = (AdsProvider)provider;
         Debug.Log($"Successfully choosed {_adsProvider}");
     }
