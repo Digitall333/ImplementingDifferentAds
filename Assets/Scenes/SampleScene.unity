@@ -746,6 +746,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &535775465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535775466}
+  - component: {fileID: 535775467}
+  m_Layer: 0
+  m_Name: Admob
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &535775466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535775465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762566749}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535775467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535775465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f774da77028d146a84bffa4c6e1d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 1
+  _myGameIdAndroid: 
+  _interstitialAdIdAndroid: ca-app-pub-3940256099942544/1033173712
+  _rewardAdIdAndroid: 'ca-app-pub-3940256099942544/5224354917 '
+  _bannerAdIdAndroid: ca-app-pub-3940256099942544/6300978111
+  _myGameIdIOS: 
+  _interstitialAdIdIOS: ca-app-pub-3940256099942544/4411468910
+  _rewardAdIdIOS: 'ca-app-pub-3940256099942544/1712485313 '
+  _bannerAdIdIOS: ca-app-pub-3940256099942544/2934735716
 --- !u!1 &668702378
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1040,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1175,6 +1228,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1912743404}
+  - {fileID: 535775466}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2538,17 +2592,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 1
-  myGameIdAndroid: 5082689
-  interstitialAdIdAndroid: Interstitial_Android
-  rewardAdIdAndroid: Rewarded_Android
-  bannerAdIdAndroid: Banner_Android
-  myGameIdIOS: 5082688
-  interstitialAdIdIOS: Interstitial_iOS
-  rewardAdIdIOS: Rewarded_iOS
-  bannerAdIdIOS: Banner_iOS
-  interstitialAdUnitId: 
-  rewardAdUnitId: 
-  bannerAdUnitId: 
+  _myGameIdAndroid: 5082689
+  _interstitialAdIdAndroid: Interstitial_Android
+  _rewardAdIdAndroid: Rewarded_Android
+  _bannerAdIdAndroid: Banner_Android
+  _myGameIdIOS: 5082688
+  _interstitialAdIdIOS: Interstitial_iOS
+  _rewardAdIdIOS: Rewarded_iOS
+  _bannerAdIdIOS: Banner_iOS
 --- !u!1 &1980761620
 GameObject:
   m_ObjectHideFlags: 0

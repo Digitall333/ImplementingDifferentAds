@@ -5,56 +5,53 @@ using UnityEngine;
 public class AdsController : MonoBehaviour
 {
     private UnityAdsController _unityAds;
+    private AdmobController _admob;
     private AdsProvider _adsProvider;
+    private AdProvider _provider;
+
     private void Start()
     {
         _unityAds = FindObjectOfType<UnityAdsController>();
+        _admob = FindObjectOfType<AdmobController>();
+
+        ChooseAdsProvider(0);
     }
     public void ShowInterstitialAd()
     {
-        switch(_adsProvider)
-        {
-            case AdsProvider.UnityAds:
-                _unityAds.ShowInterstitialAd();
-                break;
-        }
+        _provider?.ShowInterstitialAd();
     }
     public void ShowRewardedAd()
     {
-        switch (_adsProvider)
-        {
-            case AdsProvider.UnityAds:
-                _unityAds.ShowRewardedAd();
-                break;
-        }
+        _provider?.ShowRewardedAd();
     }
     public void ShowBanner()
     {
-        switch (_adsProvider)
-        {
-            case AdsProvider.UnityAds:
-                _unityAds.ShowBanner();
-                break;
-        }
+        _provider?.ShowBanner();
     }
     public void HideBanner()
     {
-        switch (_adsProvider)
-        {
-            case AdsProvider.UnityAds:
-                _unityAds.HideBanner();
-                break;
-        }
+        _provider?.HideBanner();
     }
     public void ChooseAdsProvider(int provider)
     {
         HideBanner();
 
         _adsProvider = (AdsProvider)provider;
-        Debug.Log($"Successfully choosed {_adsProvider}");
+        switch(_adsProvider)
+        {
+            case AdsProvider.UnityAds:
+                _provider = _unityAds;
+                break;
+            case AdsProvider.Admob:
+                _provider = _admob;
+                break;
+        }
+
+        Debug.Log($"Successfully selected {_adsProvider}");
     }
 }
 public enum AdsProvider
 {
-    UnityAds = 0
+    UnityAds = 0,
+    Admob = 1
 }
