@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.appodeal.appodeal-unity-plugin-upm": "https://github.com/appodeal/appodeal-unity-plugin-upm.git#v3.0.1",
     "com.unity.ads": "4.3.0",
     "com.unity.collab-proxy": "1.17.2",
     "com.unity.feature.2d": "1.0.0",
