@@ -1,2 +1,2 @@
 # ImplementingDifferentAds
- I implemented Unity Ads, Admob, Applovin and Facebook ads in this project
+ I implemented Unity Ads, Admob and Appodeal in my test unity project.
