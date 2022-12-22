@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class UnityAdsController : AdProvider, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class UnityAdsController : AdProvider, IAdShower, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     void Start()
     {
@@ -21,7 +21,7 @@ public class UnityAdsController : AdProvider, IUnityAdsInitializationListener, I
 #endif
     }
 
-    public override void ShowInterstitialAd()
+    public void ShowInterstitialAd()
     {
         if (Advertisement.isInitialized)
         {
@@ -34,7 +34,7 @@ public class UnityAdsController : AdProvider, IUnityAdsInitializationListener, I
         }
     }
 
-    public override void ShowRewardedAd()
+    public void ShowRewardedAd()
     {
         if (Advertisement.isInitialized)
         {
@@ -47,7 +47,7 @@ public class UnityAdsController : AdProvider, IUnityAdsInitializationListener, I
         }
     }
 
-    public override void ShowBanner()
+    public void ShowBanner()
     {
         if (Advertisement.isInitialized)
         {
@@ -70,7 +70,7 @@ public class UnityAdsController : AdProvider, IUnityAdsInitializationListener, I
             Advertisement.Banner.Show(bannerAdId, options);
         }
     }
-    public override void HideBanner()
+    public void HideBanner()
     {
         Advertisement.Banner.Hide();
     }

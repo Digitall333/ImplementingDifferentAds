@@ -1,49 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AdsController : MonoBehaviour
 {
+    [SerializeField] private TMP_Dropdown changeProviderDropdown;
+
     private UnityAdsController _unityAds;
     private AdmobController _admob;
+    private AppodealController _appodeal;
     private AdsProvider _adsProvider;
-    private AdProvider _provider;
+    private IAdShower _adShower;
 
     private void Start()
     {
         _unityAds = FindObjectOfType<UnityAdsController>();
         _admob = FindObjectOfType<AdmobController>();
+        _appodeal = FindObjectOfType<AppodealController>();
+
+        changeProviderDropdown.onValueChanged.AddListener(ChooseAdsProvider);
 
         ChooseAdsProvider(0);
     }
     public void ShowInterstitialAd()
     {
-        _provider?.ShowInterstitialAd();
+        _adShower?.ShowInterstitialAd();
     }
     public void ShowRewardedAd()
     {
-        _provider?.ShowRewardedAd();
+        _adShower?.ShowRewardedAd();
     }
     public void ShowBanner()
     {
-        _provider?.ShowBanner();
+        _adShower?.ShowBanner();
     }
     public void HideBanner()
     {
-        _provider?.HideBanner();
+        _adShower?.HideBanner();
     }
-    public void ChooseAdsProvider(int provider)
+    public void ChooseAdsProvider(int value)
     {
         HideBanner();
 
-        _adsProvider = (AdsProvider)provider;
+        _adsProvider = (AdsProvider)value;
         switch(_adsProvider)
         {
             case AdsProvider.UnityAds:
-                _provider = _unityAds;
+                _adShower = _unityAds;
                 break;
             case AdsProvider.Admob:
-                _provider = _admob;
+                _adShower = _admob;
+                break;
+            case AdsProvider.Appodeal:
+                _adShower = _appodeal;
                 break;
         }
 
@@ -53,5 +63,6 @@ public class AdsController : MonoBehaviour
 public enum AdsProvider
 {
     UnityAds = 0,
-    Admob = 1
+    Admob = 1,
+    Appodeal = 2
 }

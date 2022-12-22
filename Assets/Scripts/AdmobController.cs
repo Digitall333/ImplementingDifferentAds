@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdmobController : AdProvider
+public class AdmobController : AdProvider, IAdShower
 {
     private BannerView bannerView;
     private InterstitialAd interstitial;
@@ -15,7 +15,7 @@ public class AdmobController : AdProvider
         MobileAds.Initialize(HandleInitCompleteAction);
     }
 
-    public override void ShowInterstitialAd()
+    public void ShowInterstitialAd()
     {
         interstitial = new InterstitialAd(interstitialAdId);
         interstitial.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -35,7 +35,7 @@ public class AdmobController : AdProvider
         }
     }
 
-    public override void ShowRewardedAd()
+    public void ShowRewardedAd()
     {
         rewardedAd = new RewardedAd(rewardedAdId);
         rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -56,7 +56,7 @@ public class AdmobController : AdProvider
         }
     }
 
-    public override void ShowBanner()
+    public void ShowBanner()
     {
         bannerView?.Destroy();
 
@@ -70,7 +70,7 @@ public class AdmobController : AdProvider
         AdRequest request = new AdRequest.Builder().Build();
         bannerView.LoadAd(request);
     }
-    public override void HideBanner()
+    public void HideBanner()
     {
         //Destroying is better than hiding, according to https://github.com/Poing-Studios/godot-admob-android/discussions/101
         bannerView?.Destroy();

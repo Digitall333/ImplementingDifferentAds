@@ -32,8 +32,4 @@ public abstract class AdProvider : MonoBehaviour
         bannerAdId = _bannerAdIdAndroid;
 #endif
     }
-    public abstract void ShowBanner();
-    public abstract void HideBanner();
-    public abstract void ShowInterstitialAd();
-    public abstract void ShowRewardedAd();
 }
